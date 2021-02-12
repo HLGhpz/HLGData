@@ -19,7 +19,7 @@ export default {
     };
   },
   mounted() {
-    // this.initChart()
+    this.initChart()
     this.getData();
   },
   methods: {
@@ -27,16 +27,14 @@ export default {
       this.chartInstance = this.$echarts.init(this.$refs.chart, "shine");
       const initOption = {
         xAxis: {
-          type: "category",
-          data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+          type: "value",
         },
         yAxis: {
-          type: "value",
+          type: "category",
         },
         series: [
           {
-            data: [150, 230, 224, 218, 135, 147, 260],
-            type: "line",
+            type: "bar",
           },
         ],
       };
@@ -46,17 +44,38 @@ export default {
       const { data: movieData } = await this.$http.get(
         "02-电影数据/movie.json"
       );
+      console.log('await1')
       this.allData = movieData;
-      this.allData.map((movie) => {
+      await this.allData.map((movie) => {
         movie.time = this.$moment(movie.time).format("YYYYMMDD");
         return movie;
       });
-      this.allData.sort((a, b) => {
+      await this.allData.sort((a, b) => {
         return b.time - a.time;
       });
-     this.allData = this.allData.filter((movie) => {
+      this.allData = await this.allData.filter((movie) => {
         return movie.office > 100000;
       });
+      console.log(this.allData);
+      this.upData()
+    },
+    upData() {
+      const movieArr = this.allData.map((movie) => {
+        return movie.name
+      });
+      const officeArr = this.allData.map((movie) => {
+        return movie.office
+      })
+      console.log('movieArr', officeArr)
+      const upDataOption = {
+        xAxis: {
+          data: officeArr
+        },
+        yAxis: {
+          data: movieArr
+        }
+      }
+      this.chartInstance.setOption(upDataOption);
     },
   },
 };
