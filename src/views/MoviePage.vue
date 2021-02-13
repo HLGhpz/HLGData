@@ -16,10 +16,12 @@ export default {
     return {
       chartInstance: null,
       allData: null,
+      startMovie: 0,
+      endMovie: 10,
     };
   },
   mounted() {
-    this.initChart()
+    this.initChart();
     this.getData();
   },
   methods: {
@@ -37,6 +39,12 @@ export default {
             type: "bar",
           },
         ],
+        grid: {
+          left: "3%",
+          right: "4%",
+          bottom: "3%",
+          containLabel: true,
+        },
       };
       this.chartInstance.setOption(initOption);
     },
@@ -44,37 +52,62 @@ export default {
       const { data: movieData } = await this.$http.get(
         "02-电影数据/movie.json"
       );
-      console.log('await1')
       this.allData = movieData;
       await this.allData.map((movie) => {
         movie.time = this.$moment(movie.time).format("YYYYMMDD");
         return movie;
       });
       await this.allData.sort((a, b) => {
-        return b.time - a.time;
+        return a.time - b.time;
       });
       this.allData = await this.allData.filter((movie) => {
         return movie.office > 100000;
       });
+      await this.allData.map((item, index) => {
+        console.log(item);
+        item.index = index + 1;
+        return item;
+      });
       console.log(this.allData);
-      this.upData()
+      this.upData();
     },
     upData() {
-      const movieArr = this.allData.map((movie) => {
-        return movie.name
+      let showArr = this.allData.slice(this.startMovie, this.endMovie);
+      let movieArr = showArr.map((movie) => {
+        return movie.name;
       });
-      const officeArr = this.allData.map((movie) => {
-        return movie.office
-      })
-      console.log('movieArr', officeArr)
+      let officeArr = showArr.map((movie) => {
+        return {
+          value: movie.office,
+          time: movie.time,
+          index: movie.index,
+        };
+      });
+      let timeArr = showArr.map((movie) => {
+        return movie.time;
+      });
+      console.log("movieArr", timeArr);
       const upDataOption = {
-        xAxis: {
-          data: officeArr
+        series: {
+          data: officeArr,
+          label: {
+            show: true,
+            formatter: (msg) => {
+              // console.log(msg)
+              let retStr = "";
+              let time = this.$moment(msg.data.time).format("YYYY年MM月DD日");
+              retStr = `第${msg.data.index}部  时间：${time}`;
+              return retStr;
+            },
+          },
+          rich: {
+            name: {},
+          },
         },
         yAxis: {
-          data: movieArr
-        }
-      }
+          data: movieArr,
+        },
+      };
       this.chartInstance.setOption(upDataOption);
     },
   },
