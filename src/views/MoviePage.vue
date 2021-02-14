@@ -1,5 +1,5 @@
 <template>
-  <el-container class="main-container">
+  <!-- <el-container class="main-container">
     <el-header>Header</el-header>
     <el-container>
       <el-aside width="200px">Aside</el-aside>
@@ -7,7 +7,8 @@
         <div class="com-chart" ref="chart"></div>
       </el-main>
     </el-container>
-  </el-container>
+  </el-container> -->
+    <div class="com-chart" ref="chart"></div>
 </template>
 
 <script>
@@ -17,19 +18,40 @@ export default {
       chartInstance: null,
       allData: null,
       startMovie: 0,
-      endMovie: 10,
+      addMovie: 1,
+      titleFontSize: 0,
     };
+  },
+  computed: {
+    endMovie() {
+      return this.startMovie + this.addMovie;
+    },
   },
   mounted() {
     this.initChart();
     this.getData();
+    this.dataInterval();
+    window.addEventListener("resize", this.screenAdapter);
+    this.screenAdapter();
   },
   methods: {
     initChart() {
-      this.chartInstance = this.$echarts.init(this.$refs.chart, "shine");
+      this.chartInstance = this.$echarts.init(this.$refs.chart, "light");
       const initOption = {
         xAxis: {
           type: "value",
+          axisLabel: {
+            formatter: (msg) => {
+              let strRet = "";
+              if (msg != 0) {
+                strRet = msg / 10000;
+              }
+              return `${strRet}亿`;
+            },
+            showMinLabel: false,
+          },
+          minInterval: 100000,
+          maxInterval: 500000,
         },
         yAxis: {
           type: "category",
@@ -37,14 +59,45 @@ export default {
         series: [
           {
             type: "bar",
+            itemStyle: {
+              color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                {
+                  offset: 0,
+                  color: "#FE8C80",
+                },
+                {
+                  offset: 1,
+                  color: "#BF3E62",
+                },
+              ]),
+            },
+            label: {
+              show: true,
+              formatter: (msg) => {
+                // console.log(msg)
+                let retStr = "";
+                let time = this.$moment(msg.data.time).format("YYYY年MM月DD日");
+                retStr = `第${msg.data.index}部\t\t票房 ${(
+                  msg.data.value / 10000
+                ).toFixed(2)} 亿\n时间：${time}`;
+                return retStr;
+              },
+              position: "right",
+            },
           },
         ],
         grid: {
+          top: "10%",
           left: "3%",
-          right: "4%",
+          right: "20%",
           bottom: "3%",
           containLabel: true,
         },
+        // title: {
+        //   text: "81部超10亿票房电影",
+        //   left: 20,
+        //   top: 20,
+        // },
       };
       this.chartInstance.setOption(initOption);
     },
@@ -64,11 +117,11 @@ export default {
         return movie.office > 100000;
       });
       await this.allData.map((item, index) => {
-        console.log(item);
+        // console.log(item);
         item.index = index + 1;
         return item;
       });
-      console.log(this.allData);
+      // console.log(this.allData);
       this.upData();
     },
     upData() {
@@ -83,23 +136,10 @@ export default {
           index: movie.index,
         };
       });
-      let timeArr = showArr.map((movie) => {
-        return movie.time;
-      });
-      console.log("movieArr", timeArr);
       const upDataOption = {
         series: {
           data: officeArr,
-          label: {
-            show: true,
-            formatter: (msg) => {
-              // console.log(msg)
-              let retStr = "";
-              let time = this.$moment(msg.data.time).format("YYYY年MM月DD日");
-              retStr = `第${msg.data.index}部  时间：${time}`;
-              return retStr;
-            },
-          },
+          label: {},
           rich: {
             name: {},
           },
@@ -109,6 +149,64 @@ export default {
         },
       };
       this.chartInstance.setOption(upDataOption);
+    },
+    dataInterval() {
+      setInterval(() => {
+        if (this.addMovie < 10) {
+          this.addMovie++;
+        } else {
+          if (this.endMovie > this.allData.length) {
+            this.startMovie = 0;
+            this.addMovie = 1;
+          } else {
+            this.startMovie++;
+          }
+        }
+        this.upData();
+      }, 1000);
+    },
+    screenAdapter() {
+      let titleFontSize = (this.$refs.chart.offsetHeight / 100) * 3.6;
+      console.log(("width", this.$refs.chart.offsetHeight / 100) * 3.6);
+      const scaleSize = 0.6;
+      const adapterOption = {
+        title: {
+          textStyle: {
+            fontSize: titleFontSize,
+          },
+        },
+        tooltip: {
+          axisPointer: {
+            lineStyle: {
+              width: 66,
+            },
+          },
+        },
+        xAxis: {
+          axisLabel: {
+            fontSize: titleFontSize * scaleSize,
+          },
+        },
+        yAxis: {
+          axisLabel: {
+            fontSize: titleFontSize * scaleSize,
+          },
+        },
+        series: [
+          {
+            barWidth: titleFontSize,
+            itemStyle: {
+              barBorderRadius: [0, titleFontSize / 2, titleFontSize / 2, 0],
+            },
+            label: {
+              fontSize: titleFontSize * scaleSize,
+              color: "#B03A5B",
+            },
+          },
+        ],
+      };
+      this.chartInstance.setOption(adapterOption);
+      this.chartInstance.resize();
     },
   },
 };
