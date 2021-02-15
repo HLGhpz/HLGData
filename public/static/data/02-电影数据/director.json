@@ -1,0 +1,352 @@
+[
+  {
+    "Name": "陈思诚",
+    "Office": 104.16,
+    "Professional": "导演/监制/编剧",
+    "Number": 11,
+    "MasterWork": "代表作:《唐人街探案》《唐人街探案2》《唐人街探案3》《远大前程》"
+  },
+  {
+    "Name": "宁浩",
+    "Office": 99.27,
+    "Professional": "导演/编剧/演员",
+    "Number": 19,
+    "MasterWork": "代表作《我和我的家乡》《疯狂的外星人》《疯狂的石头》"
+  },
+  {
+    "Name": "徐峥",
+    "Office": 92.4,
+    "Professional": "演员/导演",
+    "Number": 11,
+    "MasterWork": "代表作:《我不是药神》《港囧》《一出好戏》"
+  },
+  {
+    "Name": "管虎",
+    "Office": 86.53,
+    "Professional": "导演/编剧/演员",
+    "Number": 43,
+    "MasterWork": "代表作:《老炮儿》《好戏一出》《厨子戏子痞子》《一出好戏》"
+  },
+  {
+    "Name": "安东尼.罗素",
+    "Office": 86.03,
+    "Professional": "导演/制片人/编剧",
+    "Number": 23,
+    "MasterWork": "代表作:《复仇者联盟4:终局之战》《复仇者联盟3:无限战争》《美国队长3》"
+  },
+  {
+    "Name": "乔.罗素",
+    "Office": 86.03,
+    "Professional": "导演/制片人/编剧",
+    "Number": 22,
+    "MasterWork": "代表作:《复仇者联盟4:终局之战》《复仇者联盟3:无限战争》《美国队长3》"
+  },
+  {
+    "Name": "周星驰",
+    "Office": 73.06,
+    "Professional": "导演/演员/编剧",
+    "Number": 17,
+    "MasterWork": "代表作:《大话西游之月光宝盒》《唐伯虎点秋香》《大话西游之大圣娶亲》《西游伏妖篇》"
+  },
+  {
+    "Name": "闫非",
+    "Office": 68.25,
+    "Professional": "导演/演员/编剧",
+    "Number": 4,
+    "MasterWork": "代表作:《夏洛特烦恼》《西虹市首富》"
+  },
+  {
+    "Name": "彭大魔",
+    "Office": 68.25,
+    "Professional": "导演/编剧/演员",
+    "Number": 4,
+    "MasterWork": "代表作:《夏洛特烦恼》《西虹市首富》"
+  },
+  {
+    "Name": "文牧野",
+    "Office": 63.23,
+    "Professional": "导演/编剧",
+    "Number": 7,
+    "MasterWork": "代表作:《我不是药神》《安魂曲》《恋爱中的城市》"
+  },
+  {
+    "Name": "郭帆",
+    "Office": 62.76,
+    "Professional": "导演/编剧/演员",
+    "Number": 8,
+    "MasterWork": "代表作:《流浪地球》《同桌的你》《你好.疯子!》"
+  },
+  {
+    "Name": "吴京",
+    "Office": 62.41,
+    "Professional": "导演/演员/编剧",
+    "Number": 5,
+    "MasterWork": "代表作:《战狼2》《战狼》《流浪地球》"
+  },
+  {
+    "Name": "林超贤",
+    "Office": 59.59,
+    "Professional": "导演/编剧",
+    "Number": 40,
+    "MasterWork": "代表作:《红海行动》《湄公河行动》《逃学威龙》"
+  },
+  {
+    "Name": "迈克尔.贝",
+    "Office": 54.35,
+    "Professional": "导演/演员/制片人",
+    "Number": 28,
+    "MasterWork": "代表作:《大黄蜂》《变形金刚2》《变形金刚》"
+  },
+  {
+    "Name": "王晶",
+    "Office": 50.82,
+    "Professional": "导演/编剧/演员",
+    "Number": 172,
+    "MasterWork": "代表作:《九品芝麻官》《倩女幽魂》《港囧》"
+  },
+  {
+    "Name": "冯小刚",
+    "Office": 50.47,
+    "Professional": "导演/演员/编剧",
+    "Number": 34,
+    "MasterWork": "代表作:《老炮儿》《芳华》《让子弹飞》"
+  },
+  {
+    "Name": "饺子",
+    "Office": 50.35,
+    "Professional": "导演/编剧",
+    "Number": 2,
+    "MasterWork": "代表作:《哪吒之魔童降世》《打.打个大西瓜》《老板的女人》"
+  },
+  {
+    "Name": "邓超",
+    "Office": 50.21,
+    "Professional": "演员/导演",
+    "Number": 7,
+    "MasterWork": "代表作:《美人鱼》《烈日灼心》《中国合伙人》《影》"
+  },
+  {
+    "Name": "俞白眉",
+    "Office": 50.21,
+    "Professional": "导演/编剧/演员",
+    "Number": 4,
+    "MasterWork": "代表作:《战狼2》《武林外传》《分手大师》"
+  },
+  {
+    "Name": "刘伟强",
+    "Office": 49.97,
+    "Professional": "导演/演员/制片人",
+    "Number": 63,
+    "MasterWork": "代表作:《无间道》《重庆森林》《黄金兄弟》《桃姐》"
+  },
+  {
+    "Name": "张一白",
+    "Office": 48.49,
+    "Professional": "导演",
+    "Number": 22,
+    "MasterWork": "代表作:《匆匆那年》《我和我的祖国》《从你的全世界路过》"
+  },
+  {
+    "Name": "陈凯歌",
+    "Office": 47.59,
+    "Professional": "导演",
+    "Number": 34,
+    "MasterWork": "代表作:《霸王别姬》《末代皇帝》《妖猫传》"
+  },
+  {
+    "Name": "徐克",
+    "Office": 47.48,
+    "Professional": "导演/编剧/演员",
+    "Number": 70,
+    "MasterWork": "代表作《倩女幽魂》《美人鱼》《青蛇》"
+  },
+  {
+    "Name": "许诚毅",
+    "Office": 46.86,
+    "Professional": "导演/制片人",
+    "Number": 11,
+    "MasterWork": "代表作:《捉妖记》《捉妖记2》《怪物史瑞克3》"
+  },
+  {
+    "Name": "薛晓路",
+    "Office": 45.39,
+    "Professional": "导演/编剧",
+    "Number": 12,
+    "MasterWork": "代表作:《北京遇上西雅图》《北京遇上西雅图之不二情书》《海洋天堂》"
+  },
+  {
+    "Name": "温子仁",
+    "Office": 44.39,
+    "Professional": "导演/编剧/演员",
+    "Number": 24,
+    "MasterWork": "代表作:《速度与激情7》《海王》《电锯惊魂》"
+  },
+  {
+    "Name": "张艺谋",
+    "Office": 41.48,
+    "Professional": "导演/摄影师/编剧",
+    "Number": 45,
+    "MasterWork": "代表作:《活着》《金陵十三钗》《影》"
+  },
+  {
+    "Name": "邱礼涛",
+    "Office": 40.33,
+    "Professional": "导演/编剧/摄影师",
+    "Number": 103,
+    "MasterWork": "代表作:《扫毒2天地对决》《拆弹专家》《新喜剧之王》"
+  },
+  {
+    "Name": "田羽生",
+    "Office": 37.32,
+    "Professional": "导演/编剧/演员",
+    "Number": 8,
+    "MasterWork": "代表作:《前任3:再见前任》《前任攻略》《人在囧途》"
+  },
+  {
+    "Name": "郑保瑞",
+    "Office": 35.74,
+    "Professional": "演员/副导演/导演",
+    "Number": 27,
+    "MasterWork": "代表作:《犯罪现场》《神探》《盲探》《毒战》"
+  },
+  {
+    "Name": "林子聪",
+    "Office": 34.16,
+    "Professional": "演员/编剧/导演",
+    "Number": 14,
+    "MasterWork": "代表作:《功夫3D》《美人鱼》《长江七号》《哪一天我们会飞》"
+  },
+  {
+    "Name": "韩寒",
+    "Office": 34.03,
+    "Professional": "导演",
+    "Number": 7,
+    "MasterWork": "代表作:《飞驰人生》《乘风破浪》《后会无期》"
+  },
+  {
+    "Name": "李仁港",
+    "Office": 32.06,
+    "Professional": "导演/编剧/制片人",
+    "Number": 16,
+    "MasterWork": "代表作:《老男孩猛龙过江》《盗墓笔记》《锦衣卫》"
+  },
+  {
+    "Name": "叶伟信",
+    "Office": 31.97,
+    "Professional": "导演/演员/编剧",
+    "Number": 35,
+    "MasterWork": "代表作:《大内密探零零发》《叶问2:宗师传奇》《叶问》"
+  },
+  {
+    "Name": "F.加里:格雷",
+    "Office": 30.01,
+    "Professional": "导演",
+    "Number": 18,
+    "MasterWork": "代表作:《速度与激情8》《黑衣人:全球追缉》《偷天换日》"
+  },
+  {
+    "Name": "丁亮",
+    "Office": 29.82,
+    "Professional": "导演",
+    "Number": 29,
+    "MasterWork": "代表作:《电视风云》《熊出没之秋日团团转》《诺查丹玛斯》"
+  },
+  {
+    "Name": "麦兆辉",
+    "Office": 26.85,
+    "Professional": "导演/演员/编剧",
+    "Number": 29,
+    "MasterWork": "代表作:《无间道》《无双》《无间道2》"
+  },
+  {
+    "Name": "郭敬明",
+    "Office": 26.23,
+    "Professional": "编剧/导演/制片人",
+    "Number": 16,
+    "MasterWork": "代表作:《小时代2:青木时代》《爵迹》《小时代3:刺金时代》《小时代》"
+  },
+  {
+    "Name": "克里斯托弗.诺兰",
+    "Office": 25.08,
+    "Professional": "导演/编剧/演员",
+    "Number": 17,
+    "MasterWork": "代表作:《星际穿越》《蝙蝠侠:黑暗骑士》《盗梦空间》"
+  },
+  {
+    "Name": "韩延",
+    "Office": 24.88,
+    "Professional": "导演/编剧",
+    "Number": 26,
+    "MasterWork": "代表作《滚蛋吧!肿瘤君》《动物世界》《第一次》"
+  },
+  {
+    "Name": "乌尔善",
+    "Office": 24.02,
+    "Professional": "导演/编剧",
+    "Number": 9,
+    "MasterWork": "代表作:《寻龙诀》《画皮2》《刀见笑》"
+  },
+  {
+    "Name": "詹姆斯.卡梅隆",
+    "Office": 23.89,
+    "Professional": "制片人/编剧/导演",
+    "Number": 31,
+    "MasterWork": "代表作:《泰坦尼克号》《阿丽塔:战斗天使》《阿凡达》"
+  },
+  {
+    "Name": "庄文强",
+    "Office": 22.86,
+    "Professional": "编剧/导演",
+    "Number": 11,
+    "MasterWork": "代表作《无间道》《无双》《无间道2》"
+  },
+  {
+    "Name": "史蒂文.斯皮尔伯格",
+    "Office": 22.8,
+    "Professional": "导演/演员/编剧",
+    "Number": 83,
+    "MasterWork": "代表作:《辛德勒的名单》《头号玩家》《猫鼠游戏》"
+  },
+  {
+    "Name": "唐季礼",
+    "Office": 22.42,
+    "Professional": "导演/演员/编剧",
+    "Number": 18,
+    "MasterWork": "代表作:《神话》《地球最后的夜晚》《十二生肖》"
+  },
+  {
+    "Name": "陈国辉",
+    "Office": 22.25,
+    "Professional": "导演/演员/编剧",
+    "Number": 7,
+    "MasterWork": "代表作《烈火英雄》《全城热恋》《全球热恋》"
+  },
+  {
+    "Name": "宋阳",
+    "Office": 22.18,
+    "Professional": "导演/编剧/演员",
+    "Number": 6,
+    "MasterWork": "代表作:《夏洛特烦恼》《羞羞的铁拳》《李茶的姑妈》"
+  },
+  {
+    "Name": "张吃鱼",
+    "Office": 22.13,
+    "Professional": "导演/编剧",
+    "Number": 1,
+    "MasterWork": "代表作:《羞羞的铁拳》"
+  },
+  {
+    "Name": "克里斯托弗.麦奎里",
+    "Office": 22.12,
+    "Professional": "编剧/导演/制片人",
+    "Number": 9,
+    "MasterWork": "代表作:《碟中谍5:神秘国度》《碟中谍6:全面瓦解》《明日边缘》"
+  },
+  {
+    "Name": "乔恩.沃茨",
+    "Office": 21.92,
+    "Professional": "导演/制片人/编剧",
+    "Number": 12,
+    "MasterWork": "代表作:《蜘蛛侠:英雄远征》《蜘蛛侠:英雄归来》《小丑》"
+  }
+]

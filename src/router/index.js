@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import EchartsPage from '../views/EchartsPage'
-import MoviePage from '../views/MoviePage'
 import BTCPage from '../views/BTCPage'
+import MoviePage from '../views/02-电影数据/MoviePage'
+import DiretorPage from '../views/02-电影数据/Director'
 
 Vue.use(VueRouter)
 
@@ -22,6 +23,10 @@ const routes = [
   {
     path: '/btc',
     component: BTCPage
+  },
+  {
+    path: '/director',
+    component: DiretorPage
   }
 ]
 
