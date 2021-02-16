@@ -1,10 +1,8 @@
 <template>
-  <div class="com-page">
-    <div class="com-chart" ref="chart"></div>
-    <div class="show-data">
-      HELLO WORLD
-    </div>
-  </div>
+  <el-container>
+    <el-aside width="100px">Aside</el-aside>
+    <el-main> <div class="com-chart" ref="chart"></div></el-main>
+  </el-container>
 </template>
 
 <script>
@@ -241,12 +239,22 @@ export default {
 
 
 <style>
- .show-data {
+.el-aside {
+  width: 100px;
+  background-color: #d3dce6;
+  color: #333;
+  text-align: center;
+  /* line-height: 200px; */
+}
 
-	width: 240px;
-	height: 193px;
-	position: fixed;/*这里一定要设置*/
-  z-index: 9990;
-
- }
+.el-main {
+  background-color: #e9eef3;
+  color: #333;
+  text-align: center;
+  /* line-height: 160px; */
+}
+.el-container {
+  height: 100%;
+  width: 100%;
+}
 </style>
