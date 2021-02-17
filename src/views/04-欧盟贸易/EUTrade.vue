@@ -20,11 +20,11 @@ export default {
     },
   },
   mounted() {
-    this.initChart();
+    // this.initChart();
     this.getData();
-    this.dataInterval();
-    window.addEventListener("resize", this.screenAdapter);
-    this.screenAdapter();
+    // this.dataInterval();
+    // window.addEventListener("resize", this.screenAdapter);
+    // this.screenAdapter();
   },
   methods: {
     initChart() {
@@ -96,28 +96,34 @@ export default {
       this.chartInstance.setOption(initOption);
     },
     async getData() {
-      const { data: actorData } = await this.$http.get(
-        "02-电影数据/actor.json"
+      const { data: tradeData } = await this.$http.get(
+        "04-欧盟贸易/EUTrade.json"
       );
-      this.allData = actorData
-        .sort((a, b) => {
-          return b.Office - a.Office;
-        })
-        .slice(0, 100)
-        .map((item, index) => {
-          item.Index = index + 1;
-          return item;
-        })
-        .reverse();
+      this.allData = tradeData;
+      // console.log(tradeData)
+      // this.allData = tradeData
+      //   .sort((a, b) => {
+      //     return b.Office - a.Office;
+      //   })
+      //   .slice(0, 100)
+      //   .map((item, index) => {
+      //     item.Index = index + 1;
+      //     return item;
+      //   })
+      //   .reverse();
 
-      console.log(this.allData);
+      // console.log(this.allData);
       this.upData();
     },
     upData() {
-      let showArr = this.allData.slice(this.startMovie, this.endMovie);
-      // let showArr = this.allData.slice(0, 10);
-      let nameArr = showArr.map((actor) => {
-        return actor.Name;
+      // let showArr = this.allData.slice(this.startMovie, this.endMovie);
+      let showArr = this.allData;
+      let timeArr = showArr.Date.map((item) => {
+        item = this.$moment(item).format("YYYY-MM");
+        return item;
+      });
+      let nameArr = showArr.Trade.map((item, index) => {
+        return item.Name
       });
       let officeArr = showArr.map((actor) => {
         return {

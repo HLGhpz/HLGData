@@ -5,6 +5,7 @@ import BTCPage from '../views/03-比特币/BTCPage'
 import MoviePage from '../views/02-电影数据/MoviePage'
 import DiretorPage from '../views/02-电影数据/DirectorPage'
 import ActorPage from '../views/02-电影数据/Actor'
+import EUTradePage from '../views/04-欧盟贸易/EUTrade'
 
 Vue.use(VueRouter)
 
@@ -32,6 +33,10 @@ const routes = [
   {
     path: '/actor',
     component: ActorPage
+  },
+  {
+    path: '/EU',
+    component: EUTradePage
   }
 ]
 
