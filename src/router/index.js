@@ -1,12 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import EchartsPage from '../views/EchartsPage'
-import BTCPage from '../views/03-比特币/BTCPage'
 import MoviePage from '../views/02-电影数据/MoviePage'
 import DiretorPage from '../views/02-电影数据/DirectorPage'
 import ActorPage from '../views/02-电影数据/Actor'
+import BTCPage from '../views/03-比特币/BTCPage'
 import EUTradePage from '../views/04-欧盟贸易/EUTrade'
-import HousePage from '../views/05-房价/House2'
+import HousePage from '../views/05-房价/House'
+import PopulationPage from '../views/06-人口/Population'
+import FundPage from '../views/07-联合国会费/Fund'
+import LanguagePage from '../views/08-编程语言/Language'
+import DxoPhone from '../views/09-智能设备/DxoPhone'
 
 Vue.use(VueRouter)
 
@@ -42,6 +46,19 @@ const routes = [
   {
     path: '/house',
     component: HousePage
+  },
+  {
+    path: '/population',
+    component: PopulationPage
+  }, {
+    path: '/Fund',
+    component: FundPage
+  }, {
+    path: '/language',
+    component: LanguagePage
+  }, {
+    path: '/dxophone',
+    component: DxoPhone
   }
 ]
 
