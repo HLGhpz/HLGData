@@ -1,105 +1,133 @@
 <template>
-  <el-container class="main-container">
-    <el-header>Header</el-header>
-    <el-container>
-      <el-aside width="200px">Aside</el-aside>
-      <el-main>
-        <div class="com-chart" ref="chart"></div>
-      </el-main>
-    </el-container>
-  </el-container>
+  <div class="com-chart" ref="chart"></div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      chartInstance: null
+      chartInstance: null,
+      allData: null,
+      startFlag: 0,
+      addFlag: 1,
+      titleFontSize: 0,
+      timerId: null,
     };
   },
+  computed: {
+    endFlag() {
+      return this.startFlag + this.addFlag;
+    },
+  },
   mounted() {
-    // this.initChart()
-    // this.getData()
-    this.testLoadsh()
+    this.initChart();
+    this.getData();
+    // this.dataInterval();
+    // window.addEventListener("resize", this.screenAdapter);
+    // this.screenAdapter();
   },
   methods: {
     initChart() {
-      this.chartInstance = this.$echarts.init(this.$refs.chart, "shine");
-      const initOption = {
+      this.chartInstance = this.$echarts.init(this.$refs.chart, "light");
+      const initOption = {};
+      this.chartInstance.setOption(initOption);
+    },
+    async getData() {
+      const { data: useData } = await this.$http.get(
+        "08-编程语言/language.json"
+      );
+      this.allData = useData;
+
+      this.upData();
+    },
+    upData() {
+      const upDataOption = {
+        dataset: [
+          {
+            source: this.allData,
+          },
+        ],
+        series: [],
+        graphic: {
+          elements: [
+            {
+              type: "text",
+              right: 160,
+              bottom: 60,
+              style: {
+                font: "bolder 80px monospace",
+                fill: "rgba(100, 100, 100, 0.25)",
+                text: "hello world",
+              },
+            },
+          ],
+        },
+      };
+      this.chartInstance.setOption(upDataOption);
+    },
+    dataInterval() {
+      this.timerId = setInterval(() => {
+        if (this.addFlag < 10) {
+          this.addFlag++;
+        } else {
+          if (this.endFlag > this.allData.length) {
+            clearInterval(this.timerId);
+          } else {
+            this.startFlag++;
+          }
+        }
+        this.upData();
+      }, 1000);
+    },
+    screenAdapter() {
+      let titleFontSize = (this.$refs.chart.offsetHeight / 100) * 3.6;
+      const scaleSize = 0.6;
+      const adapterOption = {
+        title: {
+          textStyle: {
+            fontSize: titleFontSize,
+          },
+        },
         xAxis: {
-          type: "category",
-          data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+          axisLabel: {
+            fontSize: titleFontSize * scaleSize,
+          },
         },
         yAxis: {
-          type: "value",
+          axisLabel: {
+            fontSize: titleFontSize * scaleSize,
+          },
         },
         series: [
           {
-            data: [150, 230, 224, 218, 135, 147, 260],
-            type: "line",
+            barWidth: titleFontSize,
+            itemStyle: {
+              borderRadius: [0, titleFontSize / 2, titleFontSize / 2, 0],
+            },
+            label: {
+              fontSize: titleFontSize * scaleSize,
+            },
+          },
+          {
+            // barWidth: titleFontSize,
+            // itemStyle: {
+            //   barBorderRadius: [0, titleFontSize / 2, titleFontSize / 2, 0],
+            // },
+            label: {
+              fontSize: titleFontSize * scaleSize,
+            },
           },
         ],
       };
-      this.chartInstance.setOption(initOption)
+      this.chartInstance.setOption(adapterOption);
+      this.chartInstance.resize();
     },
-    async getData(){
-      const {data: ret} = await this.$http.get(
-        "pub/名称代码对照.json"
-      )
-      const {data: eatData} = await this.$http.get(
-        "01-食肉数据/食肉数据.json"
-      )
-      eatData.map((item) => {
-
-        item[`${item.SUBJECT}Value`] = item.Value
-        delete item.Value
-        delete item.SUBJECT
-        return item
-        // console.log(item)
-      })
-      console.log(eatData)
-      
-    },
-    testLoadsh() {
-      let a = {
-        x: 3,
-        y: 4
-      }
-      let b = {
-        y: 5,
-        z: 4
-      }
-      _.assign(a,b)
-      console.log(a)
-    }
-    
   },
 };
 </script>
 
 
 <style>
-.el-header {
-  background-color: #b3c0d1;
-  color: #333;
-  text-align: center;
-  line-height: 60px;
-}
-
-.el-aside {
-  background-color: #d3dce6;
-  color: #333;
-  text-align: center;
-  line-height: 200px;
-}
-
-/* .el-main {
-  background-color: #e9eef3;
-  color: #333;
-  text-align: center;
-  line-height: 160px;
-} */
-
 .main-container {
   height: 100%;
 }

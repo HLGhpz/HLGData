@@ -32,12 +32,6 @@ export default {
       const initOption = {
         xAxis: {
           type: "value",
-          // axisLabel: {
-          //   formatter: (msg) => {
-          //     // console.log(msg);
-          //     return `${msg / 100000000}亿美元`;
-          //   },
-          // },
           axisLabel: {
             show: false,
           },
@@ -52,25 +46,19 @@ export default {
             onZero: false,
             show: false,
           },
-          // axisLabel: {
-          //   formatter: (msg) => {
-          //     return `${msg}`;
-          //   },
-          // },
         },
         grid: [
           {
             top: "10%",
             bottom: "10%",
+            right: "30%",
+            letf: "1%",
             containLabel: true,
           },
         ],
         series: [
           {
             type: "bar",
-            // symbol:'path://M30.9,53.2C16.8,53.2,5.3,41.7,5.3,27.6S16.8,2,30.9,2C45,2,56.4,13.5,56.4,27.6S45,53.2,30.9,53.2z M30.9,3.5C17.6,3.5,6.8,14.4,6.8,27.6c0,13.3,10.8,24.1,24.101,24.1C44.2,51.7,55,40.9,55,27.6C54.9,14.4,44.1,3.5,30.9,3.5z M36.9,35.8c0,0.601-0.4,1-0.9,1h-1.3c-0.5,0-0.9-0.399-0.9-1V19.5c0-0.6,0.4-1,0.9-1H36c0.5,0,0.9,0.4,0.9,1V35.8z M27.8,35.8 c0,0.601-0.4,1-0.9,1h-1.3c-0.5,0-0.9-0.399-0.9-1V19.5c0-0.6,0.4-1,0.9-1H27c0.5,0,0.9,0.4,0.9,1L27.8,35.8L27.8,35.8z',
-            // symbolRepeat: true,
-            // symbolClip: true,
             label: {
               show: true,
               position: "right",
@@ -111,7 +99,19 @@ export default {
                     itemColor = "#FBBC05";
                     break;
                   case "Sony":
-                    itemColor = "#444444";
+                    itemColor = "#333333";
+                    break;
+                  case "Lenovo":
+                    itemColor = "#E2221A";
+                    break;
+                  case "HTC":
+                    itemColor = "#95D60A";
+                    break;
+                  case "Asus":
+                    itemColor = "#231815";
+                    break;
+                  case "Motorola":
+                    itemColor = "#001428";
                     break;
                   default:
                     itemColor = "#F2F0FB";
@@ -119,6 +119,14 @@ export default {
                 }
                 return itemColor;
               },
+            },
+            label: {
+              show: true,
+              formatter: (msg) => {
+                return `${msg.data[1]} NO.${msg.data[6]}`;
+              },
+              position: "right",
+              color: 'inherit'
             },
           },
         ],
@@ -130,7 +138,7 @@ export default {
         "09-智能设备/dxophone.json"
       );
       phoneData.map((item, index) => {
-        item[6] = index;
+        item[6] = index+1;
       });
       this.allData = phoneData.reverse();
       this.upData();
@@ -150,6 +158,21 @@ export default {
             },
           },
         ],
+        graphic: {
+          elements: [
+            {
+              // 将图片定位到最下方的中间：
+              type: "image",
+              right: 100, // 水平定位到中间
+              bottom: 100, // 定位到距离下边界 10% 处
+              style: {
+                image: `./static/img/Phone/${
+                  this.allData[this.endFund - 1][5]
+                }.png`,
+              },
+            },
+          ],
+        },
       };
       this.chartInstance.setOption(upDataOption);
     },

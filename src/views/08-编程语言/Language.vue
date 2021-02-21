@@ -41,8 +41,8 @@ export default {
             show: false,
           },
           splitLine: {
-            show: false
-          }
+            show: false,
+          },
         },
         yAxis: {
           type: "category",
@@ -145,7 +145,7 @@ export default {
             // minShowLabelAngle: 20,
           },
         ],
-                graphic: {
+        graphic: {
           elements: [
             {
               type: "text",
@@ -154,7 +154,9 @@ export default {
               style: {
                 font: "bolder 80px monospace",
                 fill: "rgba(100, 100, 100, 0.25)",
-                text: `NO.${this.allData[this.endFund - 1][0]} ${this.allData[this.endFund - 1][2]}`,
+                text: `NO.${this.allData[this.endFund - 1][0]} ${
+                  this.allData[this.endFund - 1][2]
+                }`,
               },
             },
           ],
