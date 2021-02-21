@@ -46,6 +46,7 @@ export default {
             },
           },
           {
+            type: "value",
             gridIndex: 1,
           },
         ],
@@ -63,6 +64,7 @@ export default {
             minInterval: 30000,
           },
           {
+            type: "category",
             gridIndex: 1,
           },
         ],
@@ -72,10 +74,16 @@ export default {
             top: "10%",
           },
           {
-            left: "60%",
+            left: "70%",
             top: "10%",
           },
         ],
+        // legend: [
+        //   {},
+        //   {
+        //     data: ["票房", "d", "c"],
+        //   },
+        // ],
       };
       this.chartInstance.setOption(initOption);
     },
@@ -87,11 +95,16 @@ export default {
     cleanData(original) {
       let firstData = original.shift();
       original.map((item) => {
-        // console.log()
         item[4] = +item[4].replace("%", "");
         item[5] = +item[5].replace("%", "");
+        if (item[1] == "LHY") {
+          item[3] = -item[3];
+          item[4] = -item[4];
+          item[5] = -item[5];
+        }
       });
       original.unshift(firstData);
+      console.log(original);
       this.allData = original;
       this.upData();
     },
@@ -105,11 +118,21 @@ export default {
             transform: {
               type: "filter",
               config: {
+                and: [{ dimension: "Date", "=": "2/12" }],
+              },
+            },
+          },
+          {
+            fromDatasetIndex: 1,
+            transform: {
+              type: "filter",
+              config: {
                 and: [{ dimension: "Movie", "=": "LHY" }],
               },
             },
           },
           {
+            fromDatasetIndex: 1,
             transform: {
               type: "filter",
               config: {
@@ -121,7 +144,7 @@ export default {
         series: [
           {
             type: "line",
-            datasetIndex: 1,
+            datasetIndex: 2,
             encode: {
               x: 0,
               y: 2,
@@ -143,7 +166,7 @@ export default {
           },
           {
             type: "line",
-            datasetIndex: 2,
+            datasetIndex: 3,
             encode: {
               x: 0,
               y: 2,
@@ -165,10 +188,69 @@ export default {
           },
           {
             type: "bar",
-            dataset: 0,
+            xAxisIndex: 1,
+            yAxisIndex: 1,
+            stack: "Price",
+            datasetIndex: 2,
             encode: {
-              
-            }
+              x: 3,
+              y: 0,
+            },
+          },
+          {
+            type: "bar",
+            xAxisIndex: 1,
+            yAxisIndex: 1,
+            stack: "Ratio",
+            datasetIndex: 2,
+            encode: {
+              x: 4,
+              y: 0,
+            },
+          },
+          {
+            type: "bar",
+            xAxisIndex: 1,
+            yAxisIndex: 1,
+            stack: "Refund",
+            datasetIndex: 2,
+            encode: {
+              x: 5,
+              y: 0,
+            },
+          },
+          {
+            type: "bar",
+            xAxisIndex: 1,
+            yAxisIndex: 1,
+            stack: "Price",
+            datasetIndex: 3,
+            encode: {
+              x: 3,
+              y: 0,
+            },
+          },
+          {
+            type: "bar",
+            xAxisIndex: 1,
+            yAxisIndex: 1,
+            stack: "Ratio",
+            datasetIndex: 3,
+            encode: {
+              x: 4,
+              y: 0,
+            },
+          },
+          {
+            type: "bar",
+            xAxisIndex: 1,
+            yAxisIndex: 1,
+            stack: "Refund",
+            datasetIndex: 3,
+            encode: {
+              x: 5,
+              y: 0,
+            },
           },
         ],
         graphic: {
