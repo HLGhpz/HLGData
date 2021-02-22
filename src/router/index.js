@@ -13,6 +13,7 @@ import FundPage from '../views/07-联合国会费/Fund'
 import LanguagePage from '../views/08-编程语言/Language'
 import DxoPhone from '../views/09-智能设备/DxoPhone'
 import Lhy from '../views/02-电影数据/HiLhy'
+import USADead from '../views/10-美国疫情/USADead'
 
 Vue.use(VueRouter)
 
@@ -69,6 +70,10 @@ const routes = [
   {
     path: '/lhy',
     component: Lhy
+  },
+  {
+    path: '/usadead',
+    component: USADead
   }
 ]
 

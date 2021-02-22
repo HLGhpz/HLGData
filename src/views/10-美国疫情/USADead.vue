@@ -29,17 +29,52 @@ export default {
   methods: {
     initChart() {
       this.chartInstance = this.$echarts.init(this.$refs.chart, "light");
-      const initOption = {};
+      const initOption = {
+        calendar: [
+          {
+            left: "center",
+            top: "middle",
+            cellSize: [70, 70],
+            yearLabel: { show: false },
+            orient: "vertical",
+            dayLabel: {
+              firstDay: 1,
+              nameMap: "cn",
+            },
+            monthLabel: {
+              show: false,
+            },
+            range: "2020-06",
+          },
+        ],
+        series: [
+          {
+            type: "scatter",
+            coordinateSystem: "calendar",
+            symbolSize: 1,
+            label: {
+              show: true,
+              formatter: function (params) {
+                var d = echarts.number.parseDate(params.value[0]);
+                return "y";
+              },
+              color: "#a00",
+            },
+            data: 's',
+          },
+        ],
+      };
       this.chartInstance.setOption(initOption);
     },
     async getData() {
       const { data: useData } = await this.$http.get(
-        "08-编程语言/language.json"
+        "10-美国疫情/USADead.json"
       );
       this.cleanData(useData);
     },
     cleanData(useData) {
       let cleanData = useData;
+      console.log(cleanData);
       this.allData = cleanData;
       this.upData();
     },
@@ -50,7 +85,7 @@ export default {
             source: this.allData,
           },
         ],
-        series: [],
+        // series: [],
         graphic: {
           elements: [
             {
