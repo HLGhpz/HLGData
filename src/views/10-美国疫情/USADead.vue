@@ -16,51 +16,151 @@ export default {
   },
   computed: {
     endFlag() {
-      return this.startFlag + this.addFlag;
+      let end = this.startFlag + this.addFlag;
+      return end;
     },
   },
   mounted() {
     this.initChart();
     this.getData();
-    // this.dataInterval();
-    // window.addEventListener("resize", this.screenAdapter);
-    // this.screenAdapter();
+    this.dataInterval();
+    window.addEventListener("resize", this.screenAdapter);
+    this.screenAdapter();
   },
   methods: {
     initChart() {
       this.chartInstance = this.$echarts.init(this.$refs.chart, "light");
       const initOption = {
-        calendar: [
+        backgroundColor: "rgba(227,176,180, 0.1)",
+        grid: [
           {
-            left: "center",
-            top: "middle",
-            cellSize: [70, 70],
-            yearLabel: { show: false },
-            orient: "vertical",
-            dayLabel: {
-              firstDay: 1,
-              nameMap: "cn",
-            },
-            monthLabel: {
+            top: "10%",
+            bottom: "50%",
+          },
+          {
+            top: "60%",
+          },
+        ],
+        xAxis: [
+          {
+            gridIndex: 0,
+            type: "category",
+            scale: true,
+            axisLabel: {
               show: false,
             },
-            range: "2020-06",
+            axisLine: {
+              show: false,
+            },
+            axisTick: {
+              show: false,
+            },
+            label: {
+              show: true,
+            },
+          },
+          {
+            axisLabel: {
+              // show: false
+              margin: 20,
+            },
+            axisLine: {
+              show: false,
+            },
+            axisTick: {
+              show: false,
+            },
+            gridIndex: 1,
+            type: "category",
+          },
+        ],
+        yAxis: [
+          {
+            gridIndex: 0,
+            type: "value",
+            splitLine: {
+              show: false,
+            },
+            axisLabel: {
+              formatter: (msg) => {
+                if (msg < 1000) {
+                  return msg;
+                } else {
+                  return `${msg / 1000}K`;
+                }
+              },
+            },
+          },
+          {
+            gridIndex: 1,
+            type: "value",
+            axisLabel: {
+              show: false,
+              formatter: (msg) => {
+                console.log(msg);
+                if (msg < 1000) {
+                  return msg;
+                } else {
+                  return `${msg / 1000}K`;
+                }
+              },
+            },
           },
         ],
         series: [
           {
-            type: "scatter",
-            coordinateSystem: "calendar",
-            symbolSize: 1,
-            label: {
-              show: true,
-              formatter: function (params) {
-                var d = echarts.number.parseDate(params.value[0]);
-                return "y";
-              },
-              color: "#a00",
+            type: "line",
+            xAxisIndex: 0,
+            yAxisIndex: 0,
+            areaStyle: {
+              color: "rgba(202, 85, 117, 0.2)",
             },
-            data: 's',
+            smooth: true,
+            markPoint: {
+              data: [
+                {
+                  symbol: "image://./static/img/human.png",
+                  symbolSize: 50,
+                  name: "max",
+                  type: "max",
+                  symbolOffset: [0, "-50%"],
+                  label: {
+                    fontSize: 30,
+                    position: "right",
+                    color: "#AA1D2D",
+                    formatter: (msg) => {
+                      if (msg.value < 1000) {
+                        return msg.value;
+                      } else {
+                        return `${(msg.value / 1000).toFixed(2)}K`;
+                      }
+                    },
+                  },
+                },
+              ],
+            },
+          },
+          {
+            type: "pictorialBar",
+            xAxisIndex: 1,
+            yAxisIndex: 1,
+            symbol: "image://./static/img/human.png",
+            symbolClip: true,
+            symbolRepeat: true,
+            markPoint: {
+              data: [
+                {
+                  symbolSize: 80,
+                  name: "max",
+                  type: "max",
+                  symbolOffset: [0, "-10%"],
+                  label: {
+                    fontSize: 20,
+                    color: "#AA1D2D",
+                  },
+                },
+              ],
+            },
           },
         ],
       };
@@ -82,20 +182,43 @@ export default {
       const upDataOption = {
         dataset: [
           {
-            source: this.allData,
+            source: this.allData.slice(1).slice(this.startFlag, this.endFlag),
           },
         ],
-        // series: [],
+        series: [
+          {
+            // 累计死亡
+            encode: {
+              x: 1,
+              y: 5,
+            },
+          },
+          {
+            // 每日新增死亡
+            encode: {
+              x: 1,
+              y: 6,
+            },
+          },
+        ],
         graphic: {
           elements: [
             {
               type: "text",
-              right: 160,
-              bottom: 60,
+              left: "center",
+              bottom: "middle",
+              z: 100,
+              // rotation: -45,
               style: {
-                font: "bolder 80px monospace",
-                fill: "rgba(100, 100, 100, 0.25)",
-                text: "hello world",
+                font: "bolder 40px monospace",
+                fill: "rgba(100, 100, 100, 0.5)",
+                text: `${
+                  this.allData.slice(1).slice(this.endFlag - 1)[0][1]
+                }\t新增死亡人数：${
+                  this.allData.slice(1).slice(this.endFlag - 1)[0][6]
+                }\t总死亡人数：${
+                  this.allData.slice(1).slice(this.endFlag - 1)[0][5]
+                }`,
               },
             },
           ],
@@ -105,7 +228,7 @@ export default {
     },
     dataInterval() {
       this.timerId = setInterval(() => {
-        if (this.addFlag < 10) {
+        if (this.addFlag < 30) {
           this.addFlag++;
         } else {
           if (this.endFlag > this.allData.length) {
@@ -126,31 +249,37 @@ export default {
             fontSize: titleFontSize,
           },
         },
-        xAxis: {
-          axisLabel: {
-            fontSize: titleFontSize * scaleSize,
+        xAxis: [
+          {},
+          {
+            gridIndex: 1,
+            axisLabel: {
+              fontSize: titleFontSize * scaleSize,
+            },
           },
-        },
-        yAxis: {
-          axisLabel: {
-            fontSize: titleFontSize * scaleSize,
+        ],
+        yAxis: [
+          {
+            axisLabel: {
+              fontSize: titleFontSize * scaleSize,
+            },
           },
-        },
+          {
+            axisLabel: {
+              fontSize: titleFontSize * scaleSize,
+            },
+          },
+        ],
         series: [
           {
-            barWidth: titleFontSize,
-            itemStyle: {
-              borderRadius: [0, titleFontSize / 2, titleFontSize / 2, 0],
-            },
             label: {
               fontSize: titleFontSize * scaleSize,
             },
           },
           {
-            // barWidth: titleFontSize,
-            // itemStyle: {
-            //   barBorderRadius: [0, titleFontSize / 2, titleFontSize / 2, 0],
-            // },
+            barWidth: titleFontSize,
+            barCategoryGap: "30%",
+
             label: {
               fontSize: titleFontSize * scaleSize,
             },
