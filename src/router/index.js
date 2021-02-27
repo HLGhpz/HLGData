@@ -14,6 +14,9 @@ import LanguagePage from '../views/08-编程语言/Language'
 import DxoPhone from '../views/09-智能设备/DxoPhone'
 import Lhy from '../views/02-电影数据/HiLhy'
 import USADead from '../views/10-美国疫情/USADead'
+import IndiaTrade from '../views/11-商贸数据/IndiaTrade'
+import GDP from '../views/12-GDP数据/GDP'
+import Subject from '../views/13-学科评估/Subject'
 
 Vue.use(VueRouter)
 
@@ -74,6 +77,15 @@ const routes = [
   {
     path: '/usadead',
     component: USADead
+  }, {
+    path: '/IndiaTrade',
+    component: IndiaTrade
+  }, {
+    path: '/gdp',
+    component: GDP
+  }, {
+    path: '/subject',
+    component: Subject
   }
 ]
 
